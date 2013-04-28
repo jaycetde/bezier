@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+.point {
+  position:absolute;
+  width:1px;
+  height:1px;
+  background:red;
+}
+
+.container {
+  float:left;
+  margin:20px;
+  text-align:center;
+}
+
+.plot {
+  position:relative;
+  width:201px;
+  height:201px;
+  background:#DDD;
+}
+
+</style>
+
+</head>
+<body>
+
+<script src="build/build.js"></script>
+<script>
+
+var bezier = require('bezier');
+
+function plot(name, p1, p2, p3, p4) {
+  
+  var el = document.createElement('div')
+    , plotEl = document.createElement('div')
+  ;
+
+  el.className = 'container';
+  plotEl.className = 'plot';
+
+  el.innerHTML = name;
+  el.appendChild(plotEl);
+
+  var point, p;
+
+  for (var i = 0; i <= 1; i += .001) {
+    point = document.createElement('div');
+    point.className = 'point';
+
+    p = bezier.point(p1, p2, p3, p4, i);
+
+    point.style.left = ((200 * p[0])) + 'px';
+    point.style.top = (200 - (200 * p[1])) + 'px';
+
+    plotEl.appendChild(point);
+  }
+
+  document.body.appendChild(el);
+
+}
+
+plot('default', [0, 0], [0.25, 0.1], [0.25, 1], [1, 1]);
+plot('ease-in', [0, 0], [0.42, 0], [1, 1], [1, 1]);
+plot('ease-out', [0, 0], [0, 0], [0.58, 1], [1, 1]);
+plot('ease-in-out', [0, 0], [0.42, 0], [0.58, 1], [1, 1]);
+plot('cubic-bezier', [0, 0], [0, 1], [1, 0], [1, 1]);
+
+plot('custom', [0, 0], [-0.35, 0.5], [1.5, -0.25], [1, 1]);
+
+</script>
+
+</body>
+</html>
