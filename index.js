@@ -1,26 +1,24 @@
 'use strict';
 
-var memoize = require('memoize');
-
 var B1, B2, B3, B4;
 
-B1 = memoize(function (t) {
+B1 = function (t) {
   var a = 1 - t;
   return a * a * a;
-});
+};
 
-B2 = memoize(function (t) {
+B2 = function (t) {
   var a = 1 - t;
   return 3 * a * a * t;
-});
+};
 
-B3 = memoize(function (t) {
+B3 = function (t) {
   return 3 * (1 - t) * t * t;
-});
+};
 
-B4 = memoize(function (t) {
+B4 = function (t) {
   return t * t * t;
-});
+};
 
 function bezier(c1, c2, c3, c4, t) {
  

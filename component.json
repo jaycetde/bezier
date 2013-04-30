@@ -4,9 +4,7 @@
   "description": "Bezier curve",
   "version": "0.0.1",
   "keywords": [],
-  "dependencies": {
-    "nathan7/memoize": "*"
-  },
+  "dependencies": {},
   "development": {},
   "license": "MIT",
   "scripts": [
